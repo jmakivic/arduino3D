@@ -64,7 +64,7 @@ void draw() {
     float n = i / float(vertexCount);
     float t = TWO_PI * n;
 
-    exploded[i].set(cos(t + osc) * rad,
+    exploded[i].set(distance/100* rad,
       sin(t + osc) * rad,
       sin(t * osc) * cos(t + osc) * rad);
     PVector v = PVector.lerp(vertices[i], exploded[i], step);
