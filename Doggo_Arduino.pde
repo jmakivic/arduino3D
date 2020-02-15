@@ -1,4 +1,5 @@
 import processing.serial.*;
+//declaring a Serial object
 Serial myPort;
 int vertexCount;
 
@@ -14,10 +15,10 @@ void setup() {
   size(1000, 1000, P3D);
   
   //Setting up serialport
+  
   println(Serial.list());
-  myPort = new Serial(this, Serial.list()[0], 9600);
-  
-  
+  //choosing a port from the list, setting the baudrate
+  myPort = new Serial(this, Serial.list()[0], 2000000);
   
 
   camDist = height * 3;
@@ -47,6 +48,7 @@ void setup() {
 }
 
 void draw() {
+  
   if(myPort.available()>0){
    distance = myPort.read();
    println(distance);
@@ -64,7 +66,7 @@ void draw() {
     float n = i / float(vertexCount);
     float t = TWO_PI * n;
 
-    exploded[i].set(distance/100* rad,
+    exploded[i].set(distance/100 * rad,
       sin(t + osc) * rad,
       sin(t * osc) * cos(t + osc) * rad);
     PVector v = PVector.lerp(vertices[i], exploded[i], step);
